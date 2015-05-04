@@ -1,0 +1,39 @@
+<!-- simple-todos.html -->
+<head>
+  <title>Blog</title>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+
+      <h1>Blog</h1><span>      {{> loginButtons}}
+
+        {{#if currentUser}}
+          &nbsp;{{count}} post(s)
+        {{/if}}</span>
+
+      {{#if currentUser}}
+        <form class="new-post">
+          <input type="text" name="title" placeholder="Post Title">
+          <input type="text" name="text" placeholder="Post Text">
+          <input type="submit" value="Submit">
+        </form>
+      {{/if}}
+    </header>
+
+    {{#if currentUser}}
+      <ul>
+        {{#each posts}}
+          {{> post}}
+        {{/each}}
+      </ul>
+    {{else}}
+      <p class="intro">Please login or create an account to gain access to the private blogging platform.</p>
+    {{/if}}
+  </div>
+</body>
+
+<template name="post">
+  <li><strong>{{title}}</strong> - {{text}}     <button class="delete">&times;</button></li>
+</template>
